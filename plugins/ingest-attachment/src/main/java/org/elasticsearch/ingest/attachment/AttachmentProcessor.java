@@ -88,6 +88,14 @@ public final class AttachmentProcessor extends AbstractProcessor {
             if (properties.contains(Property.CONTENT) && Strings.hasLength(parsedContent)) {
                 // somehow tika seems to append a newline at the end automatically, lets remove that again
                 additionalFields.put(Property.CONTENT.toLowerCase(), parsedContent.trim());
+            } else {
+                if (properties.contains(Property.CONTENT) && !Strings.hasLength(parsedContent) && properties.contains(Property.CONTENT_TYPE)) {
+                    String contentType = metadata.get(Metadata.CONTENT_TYPE);
+                    if (contentType.contains("image")){
+                        additionalFields.put(Property.CONTENT.toLowerCase(), input);
+                    }
+                }
+
             }
 
             if (properties.contains(Property.LANGUAGE) && Strings.hasLength(parsedContent)) {

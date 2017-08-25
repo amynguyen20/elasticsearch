@@ -77,6 +77,8 @@ final class TikaImpl {
         new org.apache.tika.parser.iwork.IWorkPackageParser(),
         new org.apache.tika.parser.xml.DcXMLParser(),
         new org.apache.tika.parser.epub.EpubParser(),
+        new org.apache.tika.parser.image.ImageParser(),
+        new org.apache.tika.parser.image.TiffParser()
     };
 
     /** autodetector based on this subset */

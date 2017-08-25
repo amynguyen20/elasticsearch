@@ -166,6 +166,13 @@ public class AttachmentProcessorTests extends ESTestCase {
         assertThat(attachmentData.get("content_length"), is(notNullValue()));
     }
 
+    public void testIMG() throws Exception {
+        Map<String, Object> attachmentData = parseDocument("bird1.jpg", processor);
+        assertThat(attachmentData.get("content_type").toString(), is("image/jpeg"));
+        assertThat(attachmentData.get("content_length"), is(notNullValue()));
+        assertThat(attachmentData.get("content"), is(notNullValue()));
+    }
+
     public void testVisioIsExcluded() throws Exception {
         Map<String, Object> attachmentData = parseDocument("issue-22077.vsdx", processor);
         assertThat(attachmentData.get("content"), nullValue());
